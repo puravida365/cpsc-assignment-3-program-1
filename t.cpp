@@ -1,3 +1,7 @@
+/*
+Assignment #3
+*/
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -10,10 +14,11 @@ class TOKE{
 	private:
 		fstream f;
 		string token;
-		string temp_token;
+		string temp_token, temp_string;
 		vector <string> input;
+		vector <string> input_st;
 		vector<string>::iterator it;
-		int size;
+		int size, comma, period, semicolon;
 		
 		bool isIdentifier;
 		bool isInteger;
@@ -63,40 +68,81 @@ class TOKE{
 			
 			}
 		}
-		void identifierTest(){
-			temp_token = input.front();
-			if(isalpha(temp_token[0])){
-				for(int i=1; i < temp_token.length(); ++i){
-					if(isalnum(temp_token[i])){
-						isIdentifier = true;
-					}
-					else{
-						isIdentifier = false;
-					}
+		void stripTokens(){
+			for (it = input.begin(); it != input.end(); ++it){
+				temp_token = *it;
+				
+				comma = temp_token.find(',');
+				period = temp_token.find('.');
+				semicolon = temp_token.find(';');
+				
+				if(comma != -1){
+					temp_string = temp_token.substr(comma,1);
+					temp_token.erase(comma);
+					input_st.push_back(temp_token);
+					input_st.push_back(temp_string);
+				}
+				
+				else if(period != -1){
+					temp_string = temp_token.substr(period,1);
+					temp_token.erase(period);
+					input_st.push_back(temp_token);
+					input_st.push_back(temp_string);
+				}
+				
+				else if(semicolon != -1){
+					temp_string = temp_token.substr(semicolon,1);
+					temp_token.erase(semicolon);
+					input_st.push_back(temp_token);
+					input_st.push_back(temp_string);
+				}
+				else{
+					input_st.push_back(temp_token);
 				}
 			}
+		
 		}
-		void reservedWordTest(){
-			
-		}
-		void integerTest(){}
-		void realNumberTest(){}
-		void decimalNumberTest(){}
-		void printDataSummary(){
-			if(isIdentifier == false){
-				cout << temp_token << " is not an identifier\n" << endl;
-				cout << "Vector size is " << size;
+		void print(){
+			for (it = input_st.begin(); it != input_st.end(); ++it){
+				temp_token = *it;
+				cout << temp_token << endl;
 			}
+		
 		}
+		
 };
 
 int main(){
 
 TOKE A;
 A.readData();
-A.analyzeData();
-//A.identifierTest();
-//A.printDataSummary();
+A.stripTokens();
+//A.analyzeData();
+A.print();
 
 return(0);
 }
+
+/* SAMPLE IO
+
+Users-MacBook-Pro:3 josue$ ./a.out
+int
+Bob
+,
+2You
+,
+john
+,
+Adam
+.
+float
+taxYear
+=
+2013
+,
+taxRate
+=
+29
+.
+
+*/
