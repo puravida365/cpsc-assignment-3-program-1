@@ -1,6 +1,11 @@
-/*
-Assignment #3
-*/
+//==============================================================
+//	Name:    	Harry Mora
+//	Course:  	CPSC 323
+//	Project: 	3
+//	Date:    	September 29, 2013
+//	Professor:  Ray Ahmadnia
+//	Purpose: 	Read from data.txt, tokenize and analyze content
+//==============================================================
 
 #include <iostream>
 #include <fstream>
@@ -131,24 +136,22 @@ return(0);
 
 /* SAMPLE IO
 
-Users-MacBook-Pro:3 josue$ ./a.out
-int
-Bob
-,
-2You
-,
-john
-,
-Adam
-.
-float
-taxYear
-=
-2013
-,
-taxRate
-=
-29
-.
+int		RESERVED WORD
+Bob		IDENTIFIER
+,		SPECIAL CHARACTER
+2You		NOT IDENTIFIER
+,		SPECIAL CHARACTER
+john		IDENTIFIER
+,		SPECIAL CHARACTER
+Adam.Smith		IDENTIFIER
+;		SPECIAL CHARACTER
+float		RESERVED WORD
+taxYear		IDENTIFIER
+=		SPECIAL CHARACTER
+2013		INTEGER NUMBER
+,		SPECIAL CHARACTER
+taxRate		IDENTIFIER
+=		SPECIAL CHARACTER
+29.2.3		NOT REAL NUMBER
 
 */
