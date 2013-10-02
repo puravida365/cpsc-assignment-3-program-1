@@ -33,7 +33,11 @@ class EVALPOST{
 				item = A.top();
 				A.pop();
 				
-				if(item == '+'){
+				if(isdigit(item)){
+					cout << "digit" << endl;
+				}
+				
+				else if(item == '+'){
 					cout << "plus";
 					//x = A.pop();
    					//y = A.pop();
@@ -61,14 +65,16 @@ class EVALPOST{
 					cout << "space" << endl;
 				}
 				else{
-					//n = atoi(item);
+					n = atoi(item);
+   					//cout << n;
    					//A.push(n);
 				}
-			}
 			
-			// output result
+			/*
 			result = A.pop();    
 			cout << "Result is " << result << endl;
+			*/
+			}	
 		}
 		
 		/*
